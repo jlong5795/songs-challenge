@@ -10,7 +10,7 @@ We've created a sample catalog of songs pulled from [Spotify](https://www.spotif
 
 There's some bugs in the current implementation that could use fixing, a small design refresh, and an opportunity to introduce some new functionality as well.
 
-This repository has been set up just for you! You can commit your changes on a branch here, then open up a Pull Request and send us the link.
+While we like to be transparent with code reviews and Pull Requests, for this challenge you'll need to copy the repository using the ["Use This Template" button](https://docs.github.com/assets/images/help/repository/use-this-template-button.png) and setup a private repository (they're free these days!) on your account. Once you're done with the challenge, you can commit your changes on a branch there, open up a Pull Request, and send us the link.
 
 ### Bugs (everyone creates bugs, we squash 'em on "Bug Fix Friday")
  - Paginating past page two doesn't work.
