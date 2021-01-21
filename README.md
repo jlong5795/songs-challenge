@@ -29,7 +29,7 @@ Right now, search is powered by [a fairly naïve implementation](graphql/songs.j
 Here's a high-level set of steps you can follow:
 
 1. [Install MeiliSearch](https://docs.meilisearch.com/guides/advanced_guides/installation.html). We recommend the Docker option if you already have Docker installed.
-2. After you have MeiliSearch installed, you'll need to [index the documents](https://docs.meilisearch.com/guides/main_concepts/indexes.html#index-creation) in [songs.json](songs.json). If you run into a "Payload too large" error, check the [MeiliSearch Documentation](https://docs.meilisearch.com/errors/#payload_too_large) for a hint on how to resolve, or get creative!
+2. After you have MeiliSearch installed, you'll need to [index the documents](https://docs.meilisearch.com/guides/main_concepts/indexes.html#index-creation) in [songs.json](songs.json).
 3. Finally, you can replace the aforementioned naïve implementation with [MeiliSearch JavaScript](https://github.com/meilisearch/meilisearch-js), which is already included as a dependency.
 4. You can then implement search-as-you-type in the [Header](components/header.js).
 
