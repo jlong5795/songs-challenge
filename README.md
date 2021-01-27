@@ -10,7 +10,7 @@ We've created a sample catalog of songs pulled from [Spotify](https://www.spotif
 
 There's some bugs in the current implementation that could use fixing, a small design refresh, and an opportunity to introduce some new functionality as well.
 
-While we like to be transparent with code reviews and Pull Requests, for this challenge you'll need to clone this repository into a private repository (they're free these days!) on your account. Once you're done with the challenge, you can commit your changes on a branch there, open up a Pull Request, and send us the link.
+While we like to be transparent with code reviews and Pull Requests, for this challenge you'll need to clone this repository into a private repository (they're free these days!) on your account. Once you're done with the challenge, commit your changes on a branch there, open up a Pull Request, and send us the link.
 
 ### Bugs (everyone creates bugs, we squash 'em on "Bug Fix Friday")
  - Paginating past page two doesn't work.
@@ -28,7 +28,7 @@ Right now, search is powered by [a fairly naïve implementation](graphql/songs.j
 
 Here's a high-level set of steps you can follow:
 
-1. [Install MeiliSearch](https://docs.meilisearch.com/guides/advanced_guides/installation.html). We recommend the Docker option if you already have Docker installed.
+1. [Install MeiliSearch](https://docs.meilisearch.com/guides/advanced_guides/installation.html). We recommend the Docker option if you already have Docker installed. Please note that Docker is the only way to go if you are in a Windows environment.
 2. After you have MeiliSearch installed, you'll need to [index the documents](https://docs.meilisearch.com/guides/main_concepts/indexes.html#index-creation) in [songs.json](songs.json).
 3. Finally, you can replace the aforementioned naïve implementation with [MeiliSearch JavaScript](https://github.com/meilisearch/meilisearch-js), which is already included as a dependency.
 4. You can then implement search-as-you-type in the [Header](components/header.js).
