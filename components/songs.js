@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { request, gql } from 'graphql-request';
 import useSWR from 'swr';
 import Link from 'next/link';
@@ -46,7 +47,7 @@ const SONGS_QUERY = gql`
 const fetcher = (page, search) =>
   request('http://localhost:3000/api/graphql', SONGS_QUERY, { page, search });
 
-export default function Songs({ page, search }) {
+export default function Songs({ page, setPage, search }) {
   const { data, error } = useSWR([page, search], fetcher);
 
   if (!data && !error)
@@ -80,38 +81,43 @@ export default function Songs({ page, search }) {
       ) : (
         <p className="text-center">No Results!</p>
       )}
-      <Pagination search={search} pageInfo={data.Songs.pageInfo} />
+      <Pagination
+        search={search}
+        pageInfo={data.Songs.pageInfo}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 }
 
-function Pagination({ pageInfo, search }) {
-  const currentPage = pageInfo.currentPage || 1;
-
+function Pagination({ pageInfo, search, page, setPage }) {
   return (
     <nav aria-label="Page navigation">
       <ul className="pagination mt-5 d-flex justify-content-center">
-        <li className={currentPage === 1 ? 'page-item disabled' : 'page-item'}>
-          {currentPage === 1 ? (
+        <li
+          className={page === 1 ? 'page-item disabled' : 'page-item'}
+          onClick={() => {setPage(page - 1)}}>
+          {page === 1 ? (
             <span className="page-link">Previous</span>
           ) : (
             <Link
               passHref
-              href={`/${[search, currentPage - 1]
-                .filter(part => part)
-                .join('/')}`}>
+              href={`/${[search, page - 1].filter(part => part).join('/')}`}>
               <a className="page-link">Previous</a>
             </Link>
           )}
         </li>
 
-        <li className={pageInfo.has_more ? 'page-item' : 'page-item disabled'}>
+        <li
+          className={pageInfo.has_more ? 'page-item' : 'page-item disabled'}
+          onClick={() => {
+            setPage(page + 1);
+          }}>
           {pageInfo.has_more ? (
             <Link
               passHref
-              href={`/${[search, currentPage + 1]
-                .filter(part => part)
-                .join('/')}`}>
+              href={`/${[search, page + 1].filter(part => part).join('/')}`}>
               <a className="page-link">Next</a>
             </Link>
           ) : (

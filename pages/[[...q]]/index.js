@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
-
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Songs from '../../components/songs';
@@ -24,6 +24,7 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function App({ initialSearch, page }) {
+  const [currentPage, setCurrentPage] = useState(page);
   const router = useRouter();
 
   const performSearch = newSearch => {
@@ -36,7 +37,7 @@ export default function App({ initialSearch, page }) {
 
       <div className="py-5 bg-light">
         <div className="container">
-          <Songs search={initialSearch} page={page} />
+          <Songs search={initialSearch} page={currentPage} setPage={setCurrentPage}/>
         </div>
       </div>
     </main>
