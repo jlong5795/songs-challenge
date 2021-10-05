@@ -1,4 +1,7 @@
 Populate this file with the steps you took to get MeiliSearch up and running!
 
 $ docker ...
+Docker was already installed on my system. Ran command: 
+docker run -p 7700:7700 -v "$(pwd)/data.ms:/data.ms" getmeili/meilisearch
+
 $ curl ...
