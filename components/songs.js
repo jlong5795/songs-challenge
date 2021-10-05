@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { request, gql } from 'graphql-request';
 import useSWR from 'swr';
 import Link from 'next/link';
@@ -47,8 +47,17 @@ const SONGS_QUERY = gql`
 const fetcher = (page, search) =>
   request('http://localhost:3000/api/graphql', SONGS_QUERY, { page, search });
 
-export default function Songs({ page, setPage, search }) {
+export default function Songs({ page, setPage, search, results }) {
   const { data, error } = useSWR([page, search], fetcher);
+  const [songList, setSongList] = useState(data?.Songs?.songs | []);
+
+  useEffect(() => {
+    if (results?.length > 0) {
+      setSongList(results)
+    } else {
+      setSongList(data?.Songs?.songs)
+    }
+  }, [results, data])
 
   if (!data && !error)
     return (
@@ -72,9 +81,9 @@ export default function Songs({ page, setPage, search }) {
 
   return (
     <>
-      {data.Songs.songs.length ? (
+      {songList?.length ? (
         <div className="row row-cols-1 row-cols-sm-3 row-cols-lg-5 g-3">
-          {data.Songs.songs.map(song => (
+          {songList.map(song => (
             <Song key={song.track_id} song={song} />
           ))}
         </div>

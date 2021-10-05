@@ -25,6 +25,7 @@ export async function getServerSideProps({ params }) {
 
 export default function App({ initialSearch, page }) {
   const [currentPage, setCurrentPage] = useState(page);
+  const [results, setResults] = useState([]);
   const router = useRouter();
 
   const performSearch = newSearch => {
@@ -34,11 +35,11 @@ export default function App({ initialSearch, page }) {
 
   return (
     <main>
-      <Header performSearch={performSearch} initialSearch={initialSearch} />
+      <Header performSearch={performSearch} initialSearch={initialSearch} setResults={setResults} />
 
       <div className="py-5 bg-light">
         <div className="container">
-          <Songs search={initialSearch} page={currentPage} setPage={setCurrentPage}/>
+          <Songs search={initialSearch} page={currentPage} setPage={setCurrentPage} results={results}/>
         </div>
       </div>
     </main>
